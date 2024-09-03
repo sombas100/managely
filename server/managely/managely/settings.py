@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
     'tasks',
     'corsheaders',
 ]
@@ -64,6 +65,7 @@ REST_FRAMEWORK = {
 
 ROOT_URLCONF = 'managely.urls'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -81,6 +83,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'managely.wsgi.application'
+
+APPEND_SLASH = False
 
 
 # Database

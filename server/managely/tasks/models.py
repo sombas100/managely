@@ -6,6 +6,9 @@ class Project(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
 
+    def __str__(self):
+        return str(self.name)
+
 
 class Task(models.Model):
     STATUS_CHOICES = [
@@ -21,3 +24,6 @@ class Task(models.Model):
         Project, related_name='tasks', on_delete=models.CASCADE)
     assigned_to = models.ForeignKey(
         User, related_name='tasks', on_delete=models.SET_NULL, blank=True, null=True)
+
+    def __str__(self):
+        return str(self.title)

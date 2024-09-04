@@ -1,7 +1,9 @@
 import React from "react";
 import Divider from "@mui/material/Divider";
+import { useNavigate } from "react-router-dom";
 
 const Landing = () => {
+  const navigate = useNavigate();
   return (
     <main className="relative w-full h-screen">
       <div className="w-1/3 h-80 blur-3xl absolute bg-green-300 rounded-[60%]"></div>
@@ -16,7 +18,10 @@ const Landing = () => {
           projects and tasks to members of staff. Includes the current status of
           projects and tasks aswell as an admin dashboard for overview.
         </p>
-        <button className="py-2 px-3 translate-x-64 bg-green-400 hover:bg-green-700 transition-all ease-out rounded-lg font-semibold text-white">
+        <button
+          onClick={() => navigate("/login")}
+          className="py-2 px-3 translate-x-64 bg-green-400 hover:bg-green-700 transition-all ease-out rounded-lg font-semibold text-white"
+        >
           Get Started &rarr;
         </button>
       </div>

@@ -5,7 +5,7 @@ export interface Project {
 }
 
 
-export interface Task {
+export interface TaskItem {
     id: number;
     title: string;
     description: string;

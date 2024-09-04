@@ -1,4 +1,3 @@
-import { Button } from "@mui/material";
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -50,7 +49,7 @@ const Login: React.FC = () => {
           </h2>
           <input
             className="flex items-center translate-y-32 w-full justify-center border hover:border-green-400 transition-all ease-in rounded-md bg-sky-100 p-2 mx-auto"
-            type="tetx"
+            type="text"
             placeholder="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -64,7 +63,10 @@ const Login: React.FC = () => {
           />
           <span className="flex translate-y-40 w-full text-sm">
             Don't have a Managely account?{" "}
-            <span className="text-xs text-sky-400 ml-2 translate-y-1 flex cursor-pointer hover:text-sky-600">
+            <span
+              onClick={() => navigate("/register")}
+              className="text-xs text-sky-400 ml-2 translate-y-1 flex cursor-pointer hover:text-sky-600"
+            >
               Register Here
             </span>
           </span>

@@ -1,5 +1,3 @@
-import React from "react";
-import Divider from "@mui/material/Divider";
 import { useNavigate } from "react-router-dom";
 
 const Landing = () => {
@@ -12,7 +10,7 @@ const Landing = () => {
         <h1 className="mb-24 font-bold tracking-wide text-5xl">
           Welcome to Managely
         </h1>
-        <Divider orientation="vertical" flexItem />
+
         <p className="mb-10 text-base font-medium">
           Managely is a project management tool that allows users to assign
           projects and tasks to members of staff. Includes the current status of

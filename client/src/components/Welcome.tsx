@@ -22,11 +22,13 @@ const Welcome: React.FC = () => {
       });
   }, []);
   return (
-    <div>
+    <div className="w-full p-2">
       {error ? (
         <div>{error}</div>
       ) : user ? (
-        <h1>Welcome, {user.first_name ? user.first_name : user.username}</h1>
+        <h1 className="font-bold text-2xl">
+          Welcome, {user.first_name ? user.first_name : user.username}
+        </h1>
       ) : (
         <p>Loading user data...</p>
       )}

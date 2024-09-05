@@ -3,16 +3,18 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { TaskItem } from "../../types/types";
 import { Box, Card, Heading, Text } from "@chakra-ui/react";
+import Sidebar from "../Sidebar";
 
 const TaskDescription: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [task, setTask] = useState<TaskItem | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  // Define status colors
   const statusColors: { [key: string]: string } = {
-    TODO: "red.300",
-    IN_PROGRESS: "purple.300",
-    COMPLETED: "green.300",
+    TODO: "red.500",
+    IN_PROGRESS: "purple.500",
+    COMPLETED: "green.500",
   };
 
   const fetchTask = async () => {
@@ -41,32 +43,44 @@ const TaskDescription: React.FC = () => {
     return <div>Loading...</div>;
   }
 
+  // Get the status color
+  const statusColor = statusColors[task.status] || "gray.500"; // Default to gray if status is unknown
+
   return (
-    <div className="w-full h-screen">
-      <Card
+    <>
+      <Sidebar />
+      <Box
         display="flex"
         justifyContent="center"
         alignItems="center"
-        left="50%"
-        top="40%"
-        translateX="50%"
-        translateY="40%"
-        width="450px"
-        height="200px"
+        height="100vh"
+        padding="4"
       >
-        <Box
-          paddingX="5rem"
-          bg={statusColors}
-          padding="8px"
-          width="fit-cover"
-          borderRadius="8px"
+        <Card
+          width="450px"
+          padding="8"
+          borderRadius="md"
+          boxShadow="md"
+          bg="white"
         >
-          <Heading marginBottom="30px">{task.title}</Heading>
-          <Text>{task.description}</Text>
-          <Text fontWeight="bold">Status: {task.status}</Text>
-        </Box>
-      </Card>
-    </div>
+          <Box
+            padding="4"
+            bg={statusColor}
+            color="white"
+            borderRadius="md"
+            marginBottom="4"
+          >
+            <Text fontWeight="bold" color="black">
+              Status: {task.status}
+            </Text>
+          </Box>
+          <Heading size="lg" marginBottom="4">
+            {task.title}
+          </Heading>
+          <Text marginBottom="4">{task.description}</Text>
+        </Card>
+      </Box>
+    </>
   );
 };
 

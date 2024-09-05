@@ -1,4 +1,5 @@
 import logging
+
 from rest_framework import viewsets
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
@@ -51,6 +52,20 @@ class LogoutView(APIView):
         except TokenError as e:
             return Response({'detail': str(e)}, status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
-            # Log the error for debugging
+
             print(f"Internal Server Error: {str(e)}")
             return Response({'detail': 'Internal server error'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+class UserProfileView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        return Response({
+            'id': user.id,
+            'username': user.username,
+            'email': user.email,
+            'first_name': user.first_name,
+            'last_name': user.last_name
+        }, status=status.HTTP_200_OK)

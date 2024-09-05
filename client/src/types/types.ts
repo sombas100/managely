@@ -11,3 +11,11 @@ export interface TaskItem {
     description: string;
     status: string;
 }
+
+export interface Employee {
+    id: number;
+    username: string;
+    email: string;
+    first_name: string;
+    last_name: string;
+}

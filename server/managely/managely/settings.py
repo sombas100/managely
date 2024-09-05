@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 from decouple import config
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,6 +33,15 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
 ]
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),  # 1 hour access token
+    # Optional: 7-day refresh token
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'ROTATE_REFRESH_TOKENS': True,  # Rotate refresh tokens on use
+    'BLACKLIST_AFTER_ROTATION': True,  # Blacklist old tokens after rotation
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_ALL_ORIGINS = True

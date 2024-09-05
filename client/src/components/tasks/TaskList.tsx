@@ -1,11 +1,24 @@
 import React, { useState, useEffect } from "react";
 import Task from "./Task";
 import axios from "axios";
-import { TaskItem } from "../../types/types";
+import { TaskItem, Employee } from "../../types/types";
+
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Box,
+  Heading,
+  Text,
+} from "@chakra-ui/react";
+import Welcome from "../Welcome";
+import { Link } from "react-router-dom";
 
 const TaskList = () => {
   const [tasks, setTasks] = useState<TaskItem[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [employee, setEmployee] = useState<Employee | null>(null);
 
   try {
     const fetchTasks = async () => {
@@ -26,21 +39,36 @@ const TaskList = () => {
   }
 
   return (
-    <div>
+    <Card className="w-full mx-auto">
+      <Box>
+        <CardHeader>
+          <Heading
+            textColor="gray
+          "
+            marginLeft="250px"
+            size="sm"
+            textTransform="uppercase"
+          >
+            <Welcome /> Your task reports
+          </Heading>
+        </CardHeader>
+      </Box>
       {error ? (
         <div>{error}</div>
       ) : (
-        tasks.map((tasks) => (
-          <Task
-            key={tasks.id}
-            id={tasks.id}
-            title={tasks.title}
-            description={tasks.description}
-            status={tasks.status}
-          />
+        tasks.map((task) => (
+          <Link key={task.id} to={`/tasks/${task.id}`}>
+            <Task
+              key={task.id}
+              id={task.id}
+              title={task.title}
+              description={task.description}
+              status={task.status}
+            />
+          </Link>
         ))
       )}
-    </div>
+    </Card>
   );
 };
 
